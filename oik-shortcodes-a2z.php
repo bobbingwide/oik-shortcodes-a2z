@@ -37,25 +37,52 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
  */ 
 function oik_shortcodes_a2z_loaded() {
   add_action( 'oik_fields_loaded', 'oik_shortcodes_a2z_oik_fields_loaded', 11 );
-	add_filter( "query_post_type_letter_taxonomy_filters", "oik_shortcode_a2z_query_post_type_letter_taxonomy_filters", 11 );
+	add_filter( "query_post_type_letter_taxonomy_filters", "oik_shortcodes_a2z_query_post_type_letter_taxonomy_filters", 11 );
 }
 
 /**
- * Registers the oik_letters taxonomy 
+ * Registers the letters taxonomies
  *
- * Associates it to the object types as required.
+ * Associates the letters and/or oik_letters taxonomies to the object types as required.
  * 
+ * Note: This association is used to automatically set the 
+ * filter hooks which automatically set the taxonomy terms for a post
+ * from the title and/or content. 
  * 
  */ 
 function oik_shortcodes_a2z_oik_fields_loaded() {
-	bw_register_custom_tags( "oik_letters", "oik_api", "Letters" );
+	bw_register_custom_tags( "letters", "oik-plugins", "Letters" );
+	//register_taxonomy_for_object_type( "letters", "oik-plugins" );
+	bw_register_field_for_object_type( "letters", "oik-plugins" );
+	
+	bw_register_custom_tags( "letters", "oik-themes", "Letters" );
+	bw_register_field_for_object_type( "letters", "oik-themes" );
+
+	bw_register_custom_tags( "oik_letters", "oik_api", "API Letters" );
 	bw_register_field_for_object_type( "oik_letters", "oik_api" );
+	
+	register_taxonomy_for_object_type( "oik_letters", "oik_class" );
+	bw_register_field_for_object_type( "oik_letters", "oik_class" );
+	
+	register_taxonomy_for_object_type( "oik_letters", "oik_file" );
+	bw_register_field_for_object_type( "oik_letters", "oik_file" );		
+	
+	register_taxonomy_for_object_type( "oik_letters", "oik_hook" );
+	bw_register_field_for_object_type( "oik_letters", "oik_hook" );
+	
+	register_taxonomy_for_object_type( "oik_letters", "oik_shortcodes" );
+	bw_register_field_for_object_type( "oik_letters", "oik_shortcodes" );
+	
+	
+	register_taxonomy_for_object_type( "oik_letters", "shortcode_example" );
+	bw_register_field_for_object_type( "oik_letters", "shortcode_example" );
+	
 }
 
 /**
  * Implements 'query_post_type_letter_taxonomy_filters' for the oik_letters taxonomy
  */
-function oik_shortcode_a2z_query_post_type_letter_taxonomy_filters( $taxonomies ) {
+function oik_shortcodes_a2z_query_post_type_letter_taxonomy_filters( $taxonomies ) {
 	$taxonomies = oik_a2z_add_post_type_letter_taxonomy_filters( $taxonomies, "oik_letters", "oik_shortcodes_a2z_first_letters" );
 	return( $taxonomies );
 }
@@ -66,20 +93,8 @@ function oik_shortcode_a2z_query_post_type_letter_taxonomy_filters( $taxonomies 
  * e.g. "oik_a2z_query_terms_oik_api_oik_letters" for post_type: oik_api, taxonomy: oik_letters
  * 
  * @TODO - should the hook have a '-' separator rather rather than '_' or something completely different?
- * 
- * Mapping of the first letter to a term is like this:
- * 
- * - Choose the first non blank value from post_title or post_content
- * - Simplify accented characters to A..Z
- * - Handle other special characters as we see fit.
- * 
- * Letter        | Term | Comments
- * -------       | ---- | -------------
- * A..Z          | same | uppercased first character passed through remove_accents() 
- * 0..9          | #    |
- * _             | _    | @TODO to be completed
- * [             | [    |
- * anything else | ?    | 
+ *
+ * Mapping the first letter of each part of the API name is performed similarly to oik-a2z  
  
  * 
  * @param array $terms - current values - there may be more than one - can you think of a good reason?
@@ -87,10 +102,12 @@ function oik_shortcode_a2z_query_post_type_letter_taxonomy_filters( $taxonomies 
  * @return array replaced by the new term name
  */
 function oik_shortcodes_a2z_first_letters( $terms, $post ) {
+	$terms = array();
 	$string = trim( $post->post_title );
 	if ( !$string ) {
 		$string = trim( $post->post_content );
 	}
+	$string = oik_shortcodes_a2z_standardize_name( $string );
 	$words = explode( "_", $string );
 	$loop = 0;
 	for ( $loop = 0; $loop < 5; $loop++ ) {
@@ -105,6 +122,39 @@ function oik_shortcodes_a2z_first_letters( $terms, $post ) {
 		}
 	}
 	return( $terms );
+}
+
+/**
+ * Standardizes the API name
+ * 
+ * Reduce to a simple string with underscores by:
+ * - stripping off the unwanted bits at the end
+ * - converting expected punctuation to underscores
+ * 
+ * We should be able to deal with the following:
+ * `
+ * Class::Method() - Summary
+ * Function() - Summary
+ * path/file-name.php
+ * shortcode - Summary
+ * Class - Summary
+ * hook <span class="summary"> - action/filter </span>
+ * `
+ *
+ * @param string $string
+ * @return string standardized
+ */
+function oik_shortcodes_a2z_standardize_name( $string ) {
+	$standardized = trim( $string );
+	$standardized = str_replace( "()", " - ", $standardized );
+	$standardized = str_replace( " <", " - ", $standardized ); 
+	$summary_pos = strpos( $standardized . " - ", " - " );
+	$standardized = substr( $standardized, 0, $summary_pos ); 
+	$standardized = str_replace( "::", "_", $standardized );
+	$standardized = str_replace( "/", "_", $standardized );
+	$standardized = str_replace( ".", "_", $standardized );
+	$standardized = str_replace( "-", "_", $standardized );
+	return( $standardized );
 }
 
 /**
