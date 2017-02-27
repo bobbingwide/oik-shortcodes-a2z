@@ -4,10 +4,10 @@ Plugin Name: oik shortcode and API server letter taxonomies
 Depends: oik base plugin, oik fields, oik themes, oik-shortcodes
 Plugin URI: http://www.oik-plugins.com/oik-plugins/oik-shortcodes-a2z
 Description: Letter taxonomies for oik-shortcodes
-Version: 0.0.0
+Version: 0.0.1
 Author: bobbingwide
 Author URI: http://www.oik-plugins.com/author/bobbingwide
-Text Domain: oik-theme-fields
+Text Domain: oik-shortcodes-a2z
 Domain Path: /languages/
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html

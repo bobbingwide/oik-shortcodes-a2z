@@ -4,7 +4,7 @@ Donate link: http://www.oik-plugins.com/oik/oik-donate/
 Tags: shortcodes, smart, lazy
 Requires at least: 4.7.2
 Tested up to: 4.7.2
-Stable tag: 0.0.0
+Stable tag: 0.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -33,10 +33,17 @@ For a site that is already populated with content
 1. oik-shortcodes-a2z in action
 
 == Upgrade Notice ==
+= 0.0.1 =
+Associates Letters and API Letters taxonomies to appropriate post types 
+
+
 = 0.0.0 =
-New plugin, available from wordpress.org and oik-plugins.
+New plugin, available from oik-plugins and GitHub.
 
 == Changelog == 
+= 0.0.1 = 
+* Added: More associations [github bobbingwide oik-shortcodes-a2z issues 1]
+
 = 0.0.0 =
 * Added: New plugin for oik-plugins, WP-a2z and bobbingwide
 
