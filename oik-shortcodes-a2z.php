@@ -2,17 +2,17 @@
 /**
 Plugin Name: oik shortcode and API server letter taxonomies
 Depends: oik base plugin, oik fields, oik themes, oik-shortcodes
-Plugin URI: http://www.oik-plugins.com/oik-plugins/oik-shortcodes-a2z
+Plugin URI: https://www.oik-plugins.com/oik-plugins/oik-shortcodes-a2z
 Description: Letter taxonomies for oik-shortcodes
-Version: 0.0.1
+Version: 0.1.0
 Author: bobbingwide
-Author URI: http://www.oik-plugins.com/author/bobbingwide
+Author URI: https://www.oik-plugins.com/author/bobbingwide
 Text Domain: oik-shortcodes-a2z
 Domain Path: /languages/
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-    Copyright 2017 Bobbing Wide (email : herb@bobbingwide.com )
+    Copyright 2017-2019 Bobbing Wide (email : herb@bobbingwide.com )
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License version 2,
@@ -70,12 +70,17 @@ function oik_shortcodes_a2z_oik_fields_loaded() {
 	register_taxonomy_for_object_type( "oik_letters", "oik_hook" );
 	bw_register_field_for_object_type( "oik_letters", "oik_hook" );
 	
-	register_taxonomy_for_object_type( "oik_letters", "oik_shortcodes" );
-	bw_register_field_for_object_type( "oik_letters", "oik_shortcodes" );
+	register_taxonomy_for_object_type( "letters", "oik_shortcodes" );
+	bw_register_field_for_object_type( "letters", "oik_shortcodes" );
 	
-	
-	register_taxonomy_for_object_type( "oik_letters", "shortcode_example" );
-	bw_register_field_for_object_type( "oik_letters", "shortcode_example" );
+	register_taxonomy_for_object_type( "letters", "shortcode_example" );
+	bw_register_field_for_object_type( "letters", "shortcode_example" );
+
+	register_taxonomy_for_object_type( "letters", "block" );
+	bw_register_field_for_object_type( "letters", "block" );
+
+	register_taxonomy_for_object_type( "letters", "block_example" );
+	bw_register_field_for_object_type( "letters", "block_example" );
 	
 }
 
@@ -154,6 +159,8 @@ function oik_shortcodes_a2z_standardize_name( $string ) {
 	$standardized = str_replace( "/", "_", $standardized );
 	$standardized = str_replace( ".", "_", $standardized );
 	$standardized = str_replace( "-", "_", $standardized );
+	$standardized = str_replace( " ", "_", $standardized );
+	bw_trace2( $standardized, "standardized", true );
 	return( $standardized );
 }
 

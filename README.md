@@ -1,11 +1,11 @@
 # oik-shortcodes-a2z 
 ![banner](https://raw.githubusercontent.com/bobbingwide/oik-shortcodes-a2z/master/assets/oik-shortcodes-a2z-banner-772x250.jpg)
 * Contributors: bobbingwide
-* Donate link: http://www.oik-plugins.com/oik/oik-donate/
+* Donate link: https://www.oik-plugins.com/oik/oik-donate/
 * Tags: shortcodes, smart, lazy
-* Requires at least: 4.7.2
-* Tested up to: 4.7.2
-* Stable tag: 0.0.1
+* Requires at least: 4.9.8
+* Tested up to: 5.0.3
+* Stable tag: 0.1.0
 * License: GPLv2 or later
 * License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -34,14 +34,20 @@ For a site that is already populated with content
 1. oik-shortcodes-a2z in action
 
 ## Upgrade Notice 
+# 0.1.0 
+Updates for new CPTs for WordPress 5.0 - block and block_example. Change letter taxonomy for oik_shortcodes and shortcode_example.
+
 # 0.0.1 
 Associates Letters and API Letters taxonomies to appropriate post types
-
 
 # 0.0.0 
 New plugin, available from oik-plugins and GitHub.
 
 ## Changelog 
+# 0.1.0 
+* Changed: Added new CPTs, block and block_example, using letter taxonomy https://github.com/bobbingwide/oik-shortcodes-a2z/issues/1
+* Changed: oik_shortcodes and shortcode_example now also using letter taxonomy https://github.com/bobbingwide/oik-shortcodes-a2z/issues/1
+
 # 0.0.1 
 * Added: More associations https://github.com/bobbingwide/oik-shortcodes-a2z/issues/1
 
@@ -50,6 +56,6 @@ New plugin, available from oik-plugins and GitHub.
 
 ## Further reading 
 If you want to read more about the oik plugins then please visit the
-[oik plugin](http://www.oik-plugins.com/oik)
+[oik plugin](https://www.oik-plugins.com/oik)
 **"the oik plugin - for often included key-information"**
 
