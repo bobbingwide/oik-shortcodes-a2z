@@ -96,5 +96,18 @@ class Tests_oik_shortcodes_a2z extends BW_UnitTestCase {
 			$this->assertSame( $standardized, $result );
 		}	
 	}
+
+	function test_oik_shortcodes_a2z_standardize_block_name() {
+		$titles = array( "Block icon - oik/blockicon" =>"Block_icon_blockicon"
+						, "Subheading (deprecated) - core/subhead" => "Subheading_deprecated_subhead"
+						, "WordPress.tv - core-embed/wordpress-tv" => "WordPress.tv_wordpress_tv"
+						, "Block icon - Countdown" => "Block_icon_Countdown"
+						, "Address block - inline" => "Address_block_inline"
+						);
+		foreach ( $titles as $title => $standardized ) {
+			$result = oik_shortcodes_a2z_standardize_block_name( $title );
+			$this->assertSame( $standardized, $result );
+		}
+	}
 	 
 }

@@ -1,4 +1,4 @@
-<?php 
+<?php
 /**
 Plugin Name: oik shortcode and API server letter taxonomies
 Depends: oik base plugin, oik fields, oik themes, oik-shortcodes
@@ -76,11 +76,14 @@ function oik_shortcodes_a2z_oik_fields_loaded() {
 	register_taxonomy_for_object_type( "letters", "shortcode_example" );
 	bw_register_field_for_object_type( "letters", "shortcode_example" );
 
-	register_taxonomy_for_object_type( "letters", "block" );
-	bw_register_field_for_object_type( "letters", "block" );
+	bw_register_custom_tags( "block_letters", "block", "Block letters" );
+	//register_taxonomy_for_object_type( "letters", "block" );
+	bw_register_field_for_object_type( "block_letters", "block" );
 
-	register_taxonomy_for_object_type( "letters", "block_example" );
-	bw_register_field_for_object_type( "letters", "block_example" );
+
+
+	register_taxonomy_for_object_type( "block_letters", "block_example" );
+	bw_register_field_for_object_type( "block_letters", "block_example" );
 	
 }
 
@@ -89,6 +92,7 @@ function oik_shortcodes_a2z_oik_fields_loaded() {
  */
 function oik_shortcodes_a2z_query_post_type_letter_taxonomy_filters( $taxonomies ) {
 	$taxonomies = oik_a2z_add_post_type_letter_taxonomy_filters( $taxonomies, "oik_letters", "oik_shortcodes_a2z_first_letters" );
+	$taxonomies = oik_a2z_add_post_type_letter_taxonomy_filters( $taxonomies, "block_letters", "oik_shortcodes_a2z_block_letters" );
 	return( $taxonomies );
 }
 
@@ -197,6 +201,75 @@ function oik_shortcodes_a2z_worth_indexing_word( $word ) {
 	$worth_indexing = strlen( $word );
 	return( $worth_indexing ); 
 }
+
+/**
+ * Implement "oik_a2z_query_terms_$post_type_block_letters"
+ *
+ * e.g. "oik_a2z_query_terms_block_oik_letters" for post_type: block, taxonomy: block_letters
+ *
+ * @param array $terms - current values - there may be more than one - can you think of a good reason?
+ * @param object $post
+ * @return array replaced by the new term name
+ */
+function oik_shortcodes_a2z_block_letters( $terms, $post ) {
+	$terms = array();
+	$string = trim( $post->post_title );
+	$string = oik_shortcodes_a2z_standardize_block_name( $string );
+	$words = explode( "_", $string );
+	$loop = 0;
+	for ( $loop = 0; $loop < 5; $loop++ ) {
+		$word = bw_array_get( $words, $loop, null );
+		if ( oik_shortcodes_a2z_worth_indexing_word( $word ) ) {
+			$term = oik_shortcodes_a2z_first_letter( $word );
+			$terms[] = $term;
+		} else {
+			if ( 0 == $loop ) {
+				$terms[] = "_";
+			}
+		}
+	}
+	return( $terms );
+}
+
+/**
+ * Standardizes the block name
+ *
+ * Reduce to a simple string with underscores by:
+ * stripping unwanted stuff from the block's title
+ * which is expected to be of the form
+ * block title - namespace/blockname
+ *
+ * This also needs to work for block_example
+ * where the namespace may not be included
+ *
+ * where
+ * block title may contain parentheses
+ * namespace and blockname may contain hyphens
+ *
+ * @param string $string
+ * @return string standardized
+ */
+function oik_shortcodes_a2z_standardize_block_name( $string ) {
+	$standardized = trim( $string );
+	$standardized = str_replace( "(", "", $standardized );
+	$standardized = str_replace( ")", "", $standardized );
+
+	$sep_pos = strpos( $standardized, " - ");
+	$slash_pos = strpos( $standardized, "/" );
+	if ( $sep_pos !== null && $slash_pos !== null && $slash_pos > $sep_pos ) {
+		$namespace = substr( $standardized, $sep_pos, $slash_pos - $sep_pos );
+		bw_trace2( $namespace, "namespace" );
+		$standardized = str_replace( $namespace, "", $standardized );
+	}
+	$standardized = str_replace( "/", "_", $standardized );
+	$standardized = str_replace( " - ", "_", $standardized );
+	$standardized = str_replace( "-", "_", $standardized );
+	$standardized = str_replace( " ", "_", $standardized );
+	bw_trace2( $standardized, "standardized", true );
+	return( $standardized );
+}
+
+
 
  
 
