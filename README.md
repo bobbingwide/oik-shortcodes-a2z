@@ -3,9 +3,9 @@
 * Contributors: bobbingwide
 * Donate link: https://www.oik-plugins.com/oik/oik-donate/
 * Tags: shortcodes, smart, lazy
-* Requires at least: 4.9.8
+* Requires at least: 5.0.3
 * Tested up to: 5.0.3
-* Stable tag: 0.1.0
+* Stable tag: 0.2.0
 * License: GPLv2 or later
 * License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -34,6 +34,9 @@ For a site that is already populated with content
 1. oik-shortcodes-a2z in action
 
 ## Upgrade Notice 
+# 0.2.0 
+Upgrade for a new Block letters taxonomy for Blocks and Block examples
+
 # 0.1.0 
 Updates for new CPTs for WordPress 5.0 - block and block_example. Change letter taxonomy for oik_shortcodes and shortcode_example.
 
@@ -44,6 +47,9 @@ Associates Letters and API Letters taxonomies to appropriate post types
 New plugin, available from oik-plugins and GitHub.
 
 ## Changelog 
+# 0.2.0 
+* Changed: Add block_letters taxonomy for blocks and block examples, https://github.com/bobbingwide/oik-shortcodes-a2z/issues/1
+
 # 0.1.0 
 * Changed: Added new CPTs, block and block_example, using letter taxonomy https://github.com/bobbingwide/oik-shortcodes-a2z/issues/1
 * Changed: oik_shortcodes and shortcode_example now also using letter taxonomy https://github.com/bobbingwide/oik-shortcodes-a2z/issues/1
