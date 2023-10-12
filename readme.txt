@@ -3,8 +3,8 @@ Contributors: bobbingwide
 Donate link: https://www.oik-plugins.com/oik/oik-donate/
 Tags: shortcodes, smart, lazy
 Requires at least: 5.0.3
-Tested up to: 5.0.3
-Stable tag: 0.2.0
+Tested up to: 6.4-beta3
+Stable tag: 0.2.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -33,6 +33,9 @@ For a site that is already populated with content
 1. oik-shortcodes-a2z in action
 
 == Upgrade Notice ==
+= 0.2.1 =
+Upgrade for PHP 8.1 and PHP 8.2 support
+
 = 0.2.0 =
 Upgrade for a new Block letters taxonomy for Blocks and Block examples
 
@@ -46,6 +49,12 @@ Associates Letters and API Letters taxonomies to appropriate post types
 New plugin, available from oik-plugins and GitHub.
 
 == Changelog == 
+= 0.2.1 =
+* Changed: Support PHP 8.1 and PHP 8.2,[github bobbingwide oik-shortcodes-a2z issues 2]
+* Tested: With WordPress 6.4-beta3 and WordPress Multisite
+* Tested: With PHP 8.0, PHP 8.1 and PHP 8.2
+* Tested: With PHPUnit 9.6
+
 = 0.2.0 = 
 * Changed: Add block_letters taxonomy for blocks and block examples, [github bobbingwide oik-shortcodes-a2z issues 1]
 
