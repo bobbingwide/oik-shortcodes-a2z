@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testsuites>
-  <testsuite name="" tests="5" assertions="33" errors="0" failures="0" skipped="0" time="0.004375">
-    <testsuite name="Tests_oik_shortcodes_a2z" file="C:\apache\htdocs\wordpress\wp-content\plugins\oik-shortcodes-a2z\tests\test-oik-shortcodes-a2z.php" tests="5" assertions="33" errors="0" failures="0" skipped="0" time="0.004375">
-      <testcase name="test_oik_shortcodes_a2z_first_letter" class="Tests_oik_shortcodes_a2z" classname="Tests_oik_shortcodes_a2z" file="C:\apache\htdocs\wordpress\wp-content\plugins\oik-shortcodes-a2z\tests\test-oik-shortcodes-a2z.php" line="15" assertions="4" time="0.001418"/>
-      <testcase name="test_WordPress_function_names" class="Tests_oik_shortcodes_a2z" classname="Tests_oik_shortcodes_a2z" file="C:\apache\htdocs\wordpress\wp-content\plugins\oik-shortcodes-a2z\tests\test-oik-shortcodes-a2z.php" line="32" assertions="9" time="0.000863"/>
-      <testcase name="test_WordPress_method_names" class="Tests_oik_shortcodes_a2z" classname="Tests_oik_shortcodes_a2z" file="C:\apache\htdocs\wordpress\wp-content\plugins\oik-shortcodes-a2z\tests\test-oik-shortcodes-a2z.php" line="62" assertions="9" time="0.000756"/>
-      <testcase name="test_oik_shortcodes_standardize_name" class="Tests_oik_shortcodes_a2z" classname="Tests_oik_shortcodes_a2z" file="C:\apache\htdocs\wordpress\wp-content\plugins\oik-shortcodes-a2z\tests\test-oik-shortcodes-a2z.php" line="86" assertions="6" time="0.000665"/>
-      <testcase name="test_oik_shortcodes_a2z_standardize_block_name" class="Tests_oik_shortcodes_a2z" classname="Tests_oik_shortcodes_a2z" file="C:\apache\htdocs\wordpress\wp-content\plugins\oik-shortcodes-a2z\tests\test-oik-shortcodes-a2z.php" line="100" assertions="5" time="0.000673"/>
+  <testsuite name="" tests="5" assertions="33" errors="0" warnings="0" failures="0" skipped="0" time="0.002906">
+    <testsuite name="oik-shortcodes-a2z" tests="5" assertions="33" errors="0" warnings="0" failures="0" skipped="0" time="0.002906">
+      <testsuite name="Tests_oik_shortcodes_a2z" file="C:\apache\htdocs\wordpress\wp-content\plugins\oik-shortcodes-a2z\tests\test-oik-shortcodes-a2z.php" tests="5" assertions="33" errors="0" warnings="0" failures="0" skipped="0" time="0.002906">
+        <testcase name="test_oik_shortcodes_a2z_first_letter" class="Tests_oik_shortcodes_a2z" classname="Tests_oik_shortcodes_a2z" file="C:\apache\htdocs\wordpress\wp-content\plugins\oik-shortcodes-a2z\tests\test-oik-shortcodes-a2z.php" line="15" assertions="4" time="0.001292"/>
+        <testcase name="test_WordPress_function_names" class="Tests_oik_shortcodes_a2z" classname="Tests_oik_shortcodes_a2z" file="C:\apache\htdocs\wordpress\wp-content\plugins\oik-shortcodes-a2z\tests\test-oik-shortcodes-a2z.php" line="32" assertions="9" time="0.000517"/>
+        <testcase name="test_WordPress_method_names" class="Tests_oik_shortcodes_a2z" classname="Tests_oik_shortcodes_a2z" file="C:\apache\htdocs\wordpress\wp-content\plugins\oik-shortcodes-a2z\tests\test-oik-shortcodes-a2z.php" line="62" assertions="9" time="0.000384"/>
+        <testcase name="test_oik_shortcodes_standardize_name" class="Tests_oik_shortcodes_a2z" classname="Tests_oik_shortcodes_a2z" file="C:\apache\htdocs\wordpress\wp-content\plugins\oik-shortcodes-a2z\tests\test-oik-shortcodes-a2z.php" line="86" assertions="6" time="0.000394"/>
+        <testcase name="test_oik_shortcodes_a2z_standardize_block_name" class="Tests_oik_shortcodes_a2z" classname="Tests_oik_shortcodes_a2z" file="C:\apache\htdocs\wordpress\wp-content\plugins\oik-shortcodes-a2z\tests\test-oik-shortcodes-a2z.php" line="100" assertions="5" time="0.000319"/>
+      </testsuite>
     </testsuite>
   </testsuite>
 </testsuites>

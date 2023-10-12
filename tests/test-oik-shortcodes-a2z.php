@@ -1,11 +1,11 @@
-<?php // (C) Copyright Bobbing Wide 2017
+<?php // (C) Copyright Bobbing Wide 2017-2021
 /**
  * @group oik_shortcodes_a2z
  */
 class Tests_oik_shortcodes_a2z extends BW_UnitTestCase {
 
 
-	function setUp() { 
+	function setUp(): void {
 		oik_require( "oik-shortcodes-a2z.php", "oik-shortcodes-a2z" );
 	}
 

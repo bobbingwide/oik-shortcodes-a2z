@@ -12,7 +12,7 @@ Domain Path: /languages/
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-    Copyright 2017-2019 Bobbing Wide (email : herb@bobbingwide.com )
+    Copyright 2017-2019, 2023 Bobbing Wide (email : herb@bobbingwide.com )
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License version 2,
@@ -171,19 +171,19 @@ function oik_shortcodes_a2z_standardize_name( $string ) {
 /**
  * Returns the first letter term from the string.
  *
- * @param string $term not expected to be null
+ * @param string|null $term Note: null is treated as an empty string.
  * @return string Expected to be a single character
  */
 function oik_shortcodes_a2z_first_letter( $term ) {
+	if ( null === $term) {
+		$term = '';
+	}
 	$new_term = substr( $term, 0, 1 );
-	//echo "!$new_term!";
 	if ( ctype_digit( $new_term ) ) {
 		$new_term = "#";
 	}	else {
-		$new_term = ucfirst( $new_term );
-		//echo "New term: $new_term" . PHP_EOL ;
 		$new_term = remove_accents( $new_term );
-		//echo "New term: $new_term" . PHP_EOL ;
+		$new_term = ucfirst( $new_term );
 	}
 	return( $new_term );
 }
@@ -198,7 +198,7 @@ function oik_shortcodes_a2z_first_letter( $term ) {
  * 
  */
 function oik_shortcodes_a2z_worth_indexing_word( $word ) {
-	$worth_indexing = strlen( $word );
+	$worth_indexing = ( null === $word ) ? false : strlen( $word );
 	return( $worth_indexing ); 
 }
 
